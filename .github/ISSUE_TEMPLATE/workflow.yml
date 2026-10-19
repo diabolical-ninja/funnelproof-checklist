@@ -1,0 +1,50 @@
+name: Share a redacted workflow
+description: Tell us what your agency's current form testing misses.
+title: "[Workflow] "
+labels: ["research"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not include client names, email addresses, actual leads, passwords, or confidential evidence. We are researching the problem, not asking for access to your systems.
+  - type: textarea
+    id: incident
+    attributes:
+      label: What happened?
+      description: Describe one concrete incident or recurring manual task, without identifying the client.
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What do you do today?
+      description: Existing tools, who performs the check, and what evidence they use.
+    validations:
+      required: true
+  - type: dropdown
+    id: gap
+    attributes:
+      label: Which part is unresolved?
+      options:
+        - Page or form submission
+        - Dedicated test-inbox receipt
+        - Actual client-inbox receipt
+        - CRM record or assignment
+        - Reporting or responsibility
+        - Already solved by an existing tool
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What would a better outcome change?
+      description: Frequency, time spent, or consequences you can substantiate. No estimates required.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public sharing
+      options:
+        - label: I have removed sensitive client information and understand this issue is public.
+          required: true
+

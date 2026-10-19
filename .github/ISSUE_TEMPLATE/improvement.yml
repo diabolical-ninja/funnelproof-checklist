@@ -1,0 +1,19 @@
+name: Improve the checklist
+description: Report a missing step, unclear wording, or an accessibility problem.
+title: "[Checklist] "
+labels: ["improvement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing or unclear?
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Suggested improvement
+  - type: markdown
+    attributes:
+      value: Do not include credentials, private customer records, or confidential evidence.
+
