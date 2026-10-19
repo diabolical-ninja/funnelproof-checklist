@@ -6,6 +6,8 @@ A practical, reusable checklist for agencies testing a client's enquiry path—f
 
 ## What this helps you establish
 
+Choosing an automated tool? [Compare what monitoring checks actually prove](monitoring-options.md), with current vendor sources and six questions for your demo.
+
 - The page and form are usable.
 - A clearly labelled, authorized synthetic enquiry is accepted.
 - The expected confirmation appears.
