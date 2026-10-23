@@ -48,6 +48,8 @@ Use synthetic data. Do not put credentials, real customer details, private messa
 - Authorized person who confirmed receipt:
 - Test reference matched:
 - Arrival time:
+- For a CRM: expected new record or update to an existing synthetic record:
+- Previous state and fresh submission/event evidence:
 - Evidence reference:
 - Issue owner / next action:
 
@@ -58,8 +60,12 @@ Be precise about coverage. A dedicated test inbox does not establish delivery to
 - Outcome: Unverified
 - Expected owner / notification:
 - Actual owner / notification:
+- Expected workflow behavior for this new or returning test contact:
+- Observed action time and test reference, or explicitly excluded action:
 - Evidence reference:
 - Issue owner / next action:
+
+An existing contact or assigned owner alone does not prove this test reached the CRM or ran its next action. For example, [HubSpot updates an existing contact when a form uses the same email](https://knowledge.hubspot.com/records/deduplication-of-records), and [workflow re-enrollment is not enabled by default](https://knowledge.hubspot.com/workflows/add-re-enrollment-triggers-to-a-workflow). An authorized owner can inspect the [individual submission and its time/fields](https://knowledge.hubspot.com/forms/analyze-form-submissions-data). Record the new reference and the behavior expected for that contact's prior state. If sales automation is deliberately excluded for a safe test, mark that step unverified; do not claim the full workflow passed. These are documented platform examples, not a tested integration.
 
 ## 6. Mobile path checked
 
