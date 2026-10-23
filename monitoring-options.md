@@ -37,6 +37,22 @@ If the remaining work is setup or diagnosis, measure the time and expertise it r
 
 Use [the reusable record](checklist.md) to document one check. [Share a redacted workflow or correction](https://github.com/diabolical-ninja/funnelproof-checklist/issues/new/choose) if the template misses a meaningful stage. We are researching demand; a public report or inquiry is not a customer or revenue.
 
+## What permission does actual-inbox verification need?
+
+Added 24 October 2026 after reviewing first-party API documentation. This is a feasibility assessment, not a tested integration. We have not connected a client mailbox.
+
+Ask separately what an app **can access**, what it **requests in each response**, and what it **retains**. Selecting fewer fields can reduce collected data without making the underlying permission equally narrow.
+
+**Gmail:** Google's `gmail.metadata` scope covers headers and labels, excluding bodies, but is still classified as restricted. Restricted-scope verification applies unless an exception fits; server storage or transmission of restricted data also brings security-assessment requirements. A body-free design is therefore not automatically a low-friction public SaaS integration. [Scope definitions](https://developers.google.com/workspace/gmail/api/auth/scopes), [verification requirements and exceptions](https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification).
+
+There is also a concrete retrieval constraint: Gmail's message-list `q` search parameter cannot be used with `gmail.metadata`. Listing returns message IDs; a separate metadata fetch can request selected headers. A proposal to search directly for a test token using that scope needs a different retrieval design, rather than an unexplained switch to broader access. [List messages](https://developers.google.com/workspace/gmail/api/reference/rest/v1/users.messages/list), [get selected headers](https://developers.google.com/workspace/gmail/api/reference/rest/v1/users.messages/get).
+
+**Microsoft Graph:** delegated `Mail.ReadBasic` excludes bodies, previews, attachments and extended properties. The message API exposes subject, receipt time and folder information, and its list endpoint supports selecting fields and a specific folder. Our inference is that a unique synthetic reference in the notification subject could support a body-free receipt check in an authorized mailbox. This remains untested; actual permissions, tenant policy and the notification template must be confirmed. [Permission definition](https://learn.microsoft.com/en-us/graph/permissions-reference#mailreadbasic), [message fields](https://learn.microsoft.com/en-us/graph/api/resources/message?view=graph-rest-1.0), [list endpoint](https://learn.microsoft.com/en-us/graph/api/user-list-messages?view=graph-rest-1.0).
+
+For either platform, a token present only inside the message body would not establish this metadata-only approach. Do not replace the normal recipient just to make the test easier: that would test a different route. Match the unique reference, receipt time and agreed destination; distinguish receipt in a mailbox from placement in its Inbox folder. Neither establishes human reading or correct CRM assignment.
+
+Before an integration trial, have the destination owner approve the exact scope and confirm where the synthetic reference will appear. If that cannot be done within acceptable access, keep receipt **unverified** or use an authorized owner's manual confirmation. Do not promise automatic verification of every client's inbox from an ordinary form-success response.
+
 ## Corrections
 
 The source links above support each description. Please include a current official source when suggesting a correction. Do not disclose private customer evidence. No vendor has paid for inclusion.

@@ -8,6 +8,8 @@ A practical, reusable checklist for agencies testing a client's enquiry path—f
 
 Choosing an automated tool? [Compare what monitoring checks actually prove](monitoring-options.md), with current vendor sources and six questions for your demo.
 
+Considering access to a client's mailbox? [Check the Gmail and Microsoft Graph permission limits](monitoring-options.md#what-permission-does-actual-inbox-verification-need) before treating a body-free check as permission-free.
+
 - The page and form are usable.
 - A clearly labelled, authorized synthetic enquiry is accepted.
 - The expected confirmation appears.
