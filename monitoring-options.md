@@ -1,6 +1,6 @@
 # What does a form-monitoring check actually prove?
 
-A buying checklist for agencies, checked against public vendor pages on 20 October 2026.
+A buying checklist for agencies. Initial vendor review: 20 October 2026; mailbox-permission section: 24 October; Burrow event-capture assessment: 25 October. Older vendor rows have not been revalidated on each addition.
 
 A green result is useful only when you know which stage was observed. Before comparing prices, write down the destination you need to verify: a monitoring vendor's test inbox, the client's normal mailbox, a CRM record, or assignment to the right person.
 
@@ -14,9 +14,12 @@ This is a reading of vendor documentation, not a hands-on benchmark, endorsement
 | [FormStatus](https://formstatus.co/) | Browser-based checks daily and after WordPress updates. Its FAQ describes a generated private address passed to a companion plugin; receipt is checked in that private inbox. | Which recipient or routing rules change during the test, and whether the unchanged client path is observed separately. |
 | [Formitor](https://formitor.com/features/delivery-verification/) | Tagged test leads and receipt in a monitored inbox over SMTP, plus escalating render and browser checks. | Exactly which inbox is monitored, how the client's recipient configuration is exercised, and whether CRM creation or assignment is included. The public page alone does not settle those questions. |
 | [LeadUptime](https://leaduptime.com/) | Browser and WordPress checks, configured tracking events, evidence and incident reporting. It explicitly separates dispatch acceptance from inbox arrival; CRM adapters are listed as undergoing external qualification. | Which stages are qualified for your actual setup. Its paid plans are described as proposed rather than publicly bookable. |
+| [Burrow](https://useburrow.com/use-cases/form-monitoring) | Captures real form-plugin events and flags submission-volume anomalies. Its FAQ explicitly says it cannot confirm downstream email delivery; synthetic monitoring is described as a roadmap item. | Which plugin event is captured, whether a volume change indicates missing submissions or missing telemetry, and what separately confirms the intended mailbox or CRM destination. |
 | [FunnelProof checklist](https://funnelproof.noble-perch-4985.chatgpt.site/?utm_source=github&utm_medium=comparison&utm_campaign=checklist-v1#workbench) | A manual six-step record with confirmed, issue-found and unverified outcomes, plus a text export. | A person must perform and record the permitted test. It supplies neither automated checks nor continuous monitoring. |
 
 An unspecified capability is **unknown**, not absent. Ask for a demonstration with your authorized configuration instead of inferring either success or failure from marketing copy.
+
+Event capture is another useful observation point, but its meaning depends on the integration. Burrow's public WordPress source at [commit d32dac0](https://github.com/useburrow/burrow-wordpress-plugin/blob/d32dac084c74791e8027c84a727ef910c9f4fa1d/includes/class-burrow.php#L97-L105) registers `wpcf7_mail_sent` for Contact Form 7 and `frm_after_create_entry` for Formidable Forms. Those are different checkpoints. WordPress also [documents that a successful `wp_mail()` return does not establish recipient delivery](https://developer.wordpress.org/reference/functions/wp_mail/). We inspected documentation and source, not a running installation. Ask what a positive event proves and which failures can still happen afterwards; a missing event alone does not identify the cause.
 
 ## Six questions to take into a vendor demo
 
